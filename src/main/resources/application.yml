@@ -1,0 +1,16 @@
+micronaut:
+  application:
+    name: restApi
+  http:
+    client:
+      read-idle-timeout: 10m
+
+grpc:
+  client:
+    plaintext: true
+    max-retry-attempts: 10
+  channels:
+    serasa:
+      address: 'localhost:50051'
+      plaintext: true
+      max-retry-attempts: 5
