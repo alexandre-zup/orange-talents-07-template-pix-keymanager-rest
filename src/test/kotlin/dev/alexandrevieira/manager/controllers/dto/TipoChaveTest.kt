@@ -1,5 +1,6 @@
 package dev.alexandrevieira.manager.controllers.dto
 
+import dev.alexandrevieira.manager.controllers.registra.dto.TipoChave
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName

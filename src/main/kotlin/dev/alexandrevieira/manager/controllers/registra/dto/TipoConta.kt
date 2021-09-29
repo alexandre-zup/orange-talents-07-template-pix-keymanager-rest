@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers.dto
+package dev.alexandrevieira.manager.controllers.registra.dto
 
 enum class TipoConta {
     CONTA_CORRENTE,

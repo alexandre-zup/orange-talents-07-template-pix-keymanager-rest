@@ -1,6 +1,6 @@
-package dev.alexandrevieira.manager.controllers
+package dev.alexandrevieira.manager.controllers.registra
 
-import dev.alexandrevieira.manager.controllers.dto.NovaChaveRequest
+import dev.alexandrevieira.manager.controllers.registra.dto.NovaChaveRequest
 import dev.alexandrevieira.manager.validation.ValidUUID
 import dev.alexandrevieira.stubs.KeyManagerRegistraServiceGrpc
 import io.micronaut.http.HttpResponse

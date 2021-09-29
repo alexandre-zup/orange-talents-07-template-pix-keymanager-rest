@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers.dto
+package dev.alexandrevieira.manager.controllers.registra.dto
 
 import dev.alexandrevieira.manager.validation.ValidPixKey
 import dev.alexandrevieira.manager.validation.ValidUUID

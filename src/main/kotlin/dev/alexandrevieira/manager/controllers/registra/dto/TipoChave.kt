@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers.dto
+package dev.alexandrevieira.manager.controllers.registra.dto
 
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator
 

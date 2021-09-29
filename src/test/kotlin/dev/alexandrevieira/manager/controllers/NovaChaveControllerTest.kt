@@ -1,8 +1,8 @@
 package dev.alexandrevieira.manager.controllers
 
-import dev.alexandrevieira.manager.controllers.dto.NovaChaveRequest
-import dev.alexandrevieira.manager.controllers.dto.TipoChave
-import dev.alexandrevieira.manager.controllers.dto.TipoConta
+import dev.alexandrevieira.manager.controllers.registra.dto.NovaChaveRequest
+import dev.alexandrevieira.manager.controllers.registra.dto.TipoChave
+import dev.alexandrevieira.manager.controllers.registra.dto.TipoConta
 import dev.alexandrevieira.manager.factories.GrpcClientFactory
 import dev.alexandrevieira.stubs.*
 import io.grpc.Status
