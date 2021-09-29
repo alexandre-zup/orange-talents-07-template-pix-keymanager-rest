@@ -14,7 +14,7 @@ import java.net.URI
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 
-@Controller("/api/v1")
+@Controller
 @Validated
 class NovaChaveController {
     private val log = LoggerFactory.getLogger(this.javaClass)
@@ -22,7 +22,7 @@ class NovaChaveController {
     @Inject
     private lateinit var client: KeyManagerRegistraServiceGrpc.KeyManagerRegistraServiceBlockingStub
 
-    @Post("/clientes/{clienteId}/pix")
+    @Post("/api/v1/clientes/{clienteId}/pix")
     fun cria(
         @ValidUUID @NotBlank clienteId: String,
         @Body @Valid httpRequest: NovaChaveRequest
@@ -34,7 +34,7 @@ class NovaChaveController {
         }.let { grpcRequest ->
             client.registra(grpcRequest)
         }.also { grpcResponse ->
-            log.info("Resposta recebida do servico gRPC: $grpcResponse")
+            log.info("Resposta recebida do serviço gRPC: $grpcResponse")
         }.let { grpcResponse ->
             URI.create("/api/v1/clientes/${grpcResponse.clienteId}/pix/${grpcResponse.chavePixId}").let { uri ->
                 return HttpResponse.created(uri)
