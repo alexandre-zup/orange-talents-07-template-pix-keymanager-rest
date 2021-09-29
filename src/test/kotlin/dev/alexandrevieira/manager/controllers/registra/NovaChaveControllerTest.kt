@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers
+package dev.alexandrevieira.manager.controllers.registra
 
 import dev.alexandrevieira.manager.controllers.registra.dto.NovaChaveRequest
 import dev.alexandrevieira.manager.controllers.registra.dto.TipoChave
@@ -17,8 +17,7 @@ import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -53,10 +52,10 @@ internal class NovaChaveControllerTest {
         val httpRequest: HttpRequest<Any> = HttpRequest.POST("/api/v1/clientes/$clienteId/pix", novaChaveRequest)
         val response = httpClient.toBlocking().exchange(httpRequest, Void::class.java)
 
-        assertEquals(HttpStatus.CREATED, response.status)
-        assertTrue(response.headers.contains("Location"))
-        assertTrue(response.header("Location")!!.contains(pixId.toString()))
-        assertTrue(response.header("Location")!!.contains(clienteId.toString()))
+        Assertions.assertEquals(HttpStatus.CREATED, response.status)
+        Assertions.assertTrue(response.headers.contains("Location"))
+        Assertions.assertTrue(response.header("Location")!!.contains(pixId.toString()))
+        Assertions.assertTrue(response.header("Location")!!.contains(clienteId.toString()))
     }
 
     @Test
@@ -74,10 +73,10 @@ internal class NovaChaveControllerTest {
         val httpRequest: HttpRequest<Any> = HttpRequest.POST("/api/v1/clientes/$clienteId/pix", novaChaveRequest)
         val response = httpClient.toBlocking().exchange(httpRequest, Void::class.java)
 
-        assertEquals(HttpStatus.CREATED, response.status)
-        assertTrue(response.headers.contains("Location"))
-        assertTrue(response.header("Location")!!.contains(pixId.toString()))
-        assertTrue(response.header("Location")!!.contains(clienteId.toString()))
+        Assertions.assertEquals(HttpStatus.CREATED, response.status)
+        Assertions.assertTrue(response.headers.contains("Location"))
+        Assertions.assertTrue(response.header("Location")!!.contains(pixId.toString()))
+        Assertions.assertTrue(response.header("Location")!!.contains(clienteId.toString()))
     }
 
     @Test
@@ -95,7 +94,7 @@ internal class NovaChaveControllerTest {
         val erro = assertThrows<HttpClientResponseException> {
             httpClient.toBlocking().exchange(httpRequest, Void::class.java)
         }
-        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, erro.status)
+        Assertions.assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, erro.status)
     }
 
     private fun grpcRequest(
