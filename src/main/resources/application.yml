@@ -8,9 +8,7 @@ micronaut:
 grpc:
   client:
     plaintext: true
-    max-retry-attempts: 10
+    max-retry-attempts: 5
   channels:
-    serasa:
-      address: 'localhost:50051'
-      plaintext: true
-      max-retry-attempts: 5
+    keyManager:
+      address: '${KEY_MANAGER_HOST:localhost}:${KEY_MANAGER_PORT:50051}'

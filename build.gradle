@@ -36,14 +36,14 @@ dependencies {
     annotationProcessor("io.micronaut:micronaut-inject-java")
 
     //validation
-    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
-    //implementation("io.micronaut:micronaut-validation")
+    implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
+    implementation("io.micronaut:micronaut-validation")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.micronaut.xml:micronaut-jackson-xml")
 
-    testImplementation("org.mockito:mockito-core:3.8.0")
-    testImplementation("com.h2database:h2")
+//    testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
+    testImplementation("org.mockito:mockito-inline:3.8.0")
 
     //gRPC
     implementation("io.micronaut.grpc:micronaut-grpc-client-runtime")
