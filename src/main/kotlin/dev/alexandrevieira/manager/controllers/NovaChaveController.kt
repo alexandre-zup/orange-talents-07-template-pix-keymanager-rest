@@ -29,14 +29,14 @@ class NovaChaveController {
     ): HttpResponse<Void> {
         log.info("Método 'cria' recebendo 'clienteId' $clienteId, 'request' $httpRequest")
 
-        httpRequest.toGrpcRequest(clienteId).also {
-            log.info("Chamando serviço gRPC com 'request' $it")
-        }.let {
-            client.registra(it)
-        }.also {
-            log.info("Resposta recebida do servico gRPC: $it")
-        }.let {
-            URI.create("/api/v1/clientes/${it.clienteId}/pix/${it.chavePixId}").let { uri ->
+        httpRequest.toGrpcRequest(clienteId).also { grpcRequest ->
+            log.info("Chamando serviço gRPC com 'request' $grpcRequest")
+        }.let { grpcRequest ->
+            client.registra(grpcRequest)
+        }.also { grpcResponse ->
+            log.info("Resposta recebida do servico gRPC: $grpcResponse")
+        }.let { grpcResponse ->
+            URI.create("/api/v1/clientes/${grpcResponse.clienteId}/pix/${grpcResponse.chavePixId}").let { uri ->
                 return HttpResponse.created(uri)
             }
         }
