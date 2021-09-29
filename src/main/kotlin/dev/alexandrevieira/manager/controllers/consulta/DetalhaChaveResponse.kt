@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers.detalha
+package dev.alexandrevieira.manager.controllers.consulta
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import dev.alexandrevieira.manager.controllers.registra.dto.TipoChave
@@ -6,14 +6,16 @@ import dev.alexandrevieira.manager.controllers.registra.dto.TipoConta
 import dev.alexandrevieira.stubs.ConsultaChaveResponse
 import io.micronaut.core.annotation.Introspected
 import java.time.Instant
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 @Introspected
-data class DetalhaResponse(
+data class DetalhaChaveResponse(
     val chavePixId: String,
     val tipo: TipoChave,
     val chave: String,
-    @field:JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Sao_Paulo")
-    val criadaEm: Instant,
+    @field:JsonFormat(shape = JsonFormat.Shape.STRING)
+    val criadaEm: ZonedDateTime,
     val conta: ContaResponse
 ) {
     @Introspected
@@ -53,12 +55,14 @@ data class DetalhaResponse(
     }
 
     companion object {
-        fun of(chave: ConsultaChaveResponse): DetalhaResponse {
-            return DetalhaResponse(
+        fun of(chave: ConsultaChaveResponse): DetalhaChaveResponse {
+            val instant = Instant.ofEpochSecond(chave.criadaEm.seconds, chave.criadaEm.nanos.toLong())
+
+            return DetalhaChaveResponse(
                 chave.chavePixId,
                 TipoChave.valueOf(chave.tipo.name),
                 chave.chave,
-                Instant.ofEpochSecond(chave.criadaEm.seconds, chave.criadaEm.nanos.toLong()),
+                ZonedDateTime.ofInstant(instant, ZoneId.of("America/Sao_Paulo")),
                 ContaResponse.of(chave.conta)
             )
         }

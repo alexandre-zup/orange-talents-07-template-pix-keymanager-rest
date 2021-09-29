@@ -1,4 +1,4 @@
-package dev.alexandrevieira.manager.controllers.detalha
+package dev.alexandrevieira.manager.controllers.consulta
 
 import dev.alexandrevieira.manager.validation.ValidUUID
 import dev.alexandrevieira.stubs.ConsultaChaveRequest
@@ -9,7 +9,6 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.validation.Validated
 import jakarta.inject.Inject
 import org.slf4j.LoggerFactory
-import java.net.URI
 import javax.validation.constraints.NotBlank
 
 @Controller
@@ -24,7 +23,7 @@ class DetalhaChaveController {
     fun detalha(
         @NotBlank @ValidUUID clienteId: String,
         @NotBlank @ValidUUID chavePixId: String
-    ): HttpResponse<DetalhaResponse> {
+    ): HttpResponse<DetalhaChaveResponse> {
         log.info("Método 'detalha' recebendo 'clienteId' $clienteId, 'chavePixId' $chavePixId")
 
         return grpcRequest(clienteId, chavePixId).also { request ->
@@ -34,7 +33,7 @@ class DetalhaChaveController {
         }.also { response ->
             log.info("Resposta recebida do serviço gRPC: $response")
         }.let { response ->
-            HttpResponse.ok(DetalhaResponse.of(response))
+            HttpResponse.ok(DetalhaChaveResponse.of(response))
         }
     }
 
