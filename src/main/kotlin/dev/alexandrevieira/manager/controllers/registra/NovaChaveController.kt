@@ -29,7 +29,7 @@ class NovaChaveController {
     ): HttpResponse<Void> {
         log.info("Método 'cria' recebendo 'clienteId' $clienteId, 'request' $httpRequest")
 
-        httpRequest.toGrpcRequest(clienteId).also { grpcRequest ->
+        return httpRequest.toGrpcRequest(clienteId).also { grpcRequest ->
             log.info("Chamando serviço gRPC com 'request' $grpcRequest")
         }.let { grpcRequest ->
             client.registra(grpcRequest)
@@ -37,7 +37,7 @@ class NovaChaveController {
             log.info("Resposta recebida do serviço gRPC: $grpcResponse")
         }.let { grpcResponse ->
             URI.create("/api/v1/clientes/${grpcResponse.clienteId}/pix/${grpcResponse.chavePixId}").let { uri ->
-                return HttpResponse.created(uri)
+                HttpResponse.created(uri)
             }
         }
     }

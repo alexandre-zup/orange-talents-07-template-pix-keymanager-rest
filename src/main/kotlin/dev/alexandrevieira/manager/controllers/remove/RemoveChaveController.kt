@@ -24,7 +24,7 @@ class RemoveChaveController {
     fun remove(
         @NotBlank @ValidUUID clienteId: String,
         @NotBlank @ValidUUID chavePixId: String
-    ): MutableHttpResponse<Void> {
+    ): HttpResponse<Void> {
         log.info("Método 'remove' recebendo 'clienteId' $clienteId, 'chavePixId' $chavePixId")
         val grpcRequest: RemoveChaveRequest = RemoveChaveRequest.newBuilder()
             .setChavePixId(chavePixId)
